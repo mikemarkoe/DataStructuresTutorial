@@ -52,12 +52,23 @@ class StringBinaryTreeNode:
         else:            
             return self.left.get_leftmost_data()
         
+    def remove_leftmost_node(self):
+        if (self.left is None):
+            return self.right
+        else:
+            the_left = self.get_left_node()
+            return the_left.remove_leftmost_node()
+        
 if __name__ == '__main__':
     
+    left_righty = StringBinaryTreeNode("I'm instantiated as the right below the left")
     left_lefty = StringBinaryTreeNode("I'm a lower left lefty.")
-    left_tree = StringBinaryTreeNode("I'm a lefty", left_lefty, None)
+    left_tree = StringBinaryTreeNode("I'm a lefty", left_lefty, left_righty)
     my_tree = StringBinaryTreeNode("I AM ROOT", left_tree, None)
     print(my_tree.is_leaf())
     print(my_tree.get_leftmost_data())
+    my_tree.remove_leftmost_node()
+    print(my_tree.get_leftmost_data())#fix this it doesn't work
+
     
     pass
