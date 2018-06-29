@@ -32,13 +32,23 @@ class StringLinkedNode:
         
     def add_node_after(self, node_data):
         ''' Add a node after this node.
-            If it is "None" it will become the tail of the list.
+            
         '''
         current_next_node = self.get_link()
         self.link = StringLinkedNode(current_next_node, node_data)
-
+        
+    def remove_node_after(self):
+        ''' Remove a node after this node.
+        '''
+        if (self.get_link() is not None):
+            new_next_node = self.get_link().get_link()
+            self.set_link(new_next_node)
+        else:
+            print("no node to remove")
 
 if __name__ == '__main__':
+    
+
     
     next2 = StringLinkedNode(None, "Next Next one")        
     next1 = StringLinkedNode(next2, "Next one")
@@ -48,4 +58,12 @@ if __name__ == '__main__':
     print(head.get_data())
     print(head.get_link().get_data())
     print(head.get_link().get_link().get_data())
+    head.remove_node_after()
+    print(head.get_data())
+    print(head.get_link().get_data())
+    print(head.get_link().get_link().get_data())    
+    
+    only_one_node = StringLinkedNode(next1, "I'm just one node")
+    only_one_node.remove_node_after()
+    print(only_one_node.get_data())
     pass
