@@ -45,13 +45,25 @@ class StringLinkedNode:
             self.set_link(new_next_node)
         else:
             print("no node to remove")
+            
+def list_length(node):
+    ''' This is a function to get the length of a list
+        takes a node as input and returns an integer
+    '''           
+    if node is not None: 
+        the_count = 0    
+        while (node.get_link() is not None):
+            the_count = the_count + 1
+            node = node.get_link()
+        return the_count
+    else:
+        return 0
+    
 
 if __name__ == '__main__':
     
-
-    
     next2 = StringLinkedNode(None, "Next Next one")        
-    next1 = StringLinkedNode(next2, "Next one")
+    next1  = StringLinkedNode(next2, "Next one")
     head = StringLinkedNode(next1, "this is the HEAD")
     head = StringLinkedNode(head, "the new head")
     head.add_node_after("I'm new data, I just jumped in here!")
@@ -62,8 +74,19 @@ if __name__ == '__main__':
     print(head.get_data())
     print(head.get_link().get_data())
     print(head.get_link().get_link().get_data())    
+    print(head.get_link().get_link().get_data())    
     
     only_one_node = StringLinkedNode(next1, "I'm just one node")
     only_one_node.remove_node_after()
     print(only_one_node.get_data())
+    prev_node = StringLinkedNode(None)
+    for i in range(20):
+        new_node = StringLinkedNode(prev_node, str(i))
+        prev_node = new_node
+
+    print(new_node.get_data())
+    print(new_node.get_link().get_data())
+    print(new_node.get_link().get_link().get_data())
+    print(list_length(new_node))
+    
     pass
