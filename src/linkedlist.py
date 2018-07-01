@@ -49,16 +49,46 @@ class StringLinkedNode:
 def list_length(node):
     ''' This is a function to get the length of a list
         takes a node as input and returns an integer
-    '''           
-    if node is not None: 
-        the_count = 0    
+    '''       
+    the_count = 0    
+    if node is  None: 
+        return the_count
+    else:
         while (node.get_link() is not None):
             the_count = the_count + 1
             node = node.get_link()
         return the_count
-    else:
-        return 0
     
+def list_search(starting_node, search_string):
+    ''' This function returns the node that contains the search_string
+    '''   
+    if starting_node is None:
+        return None
+    else:
+        while starting_node.get_link() is not None:
+            if starting_node.get_data() == search_string:
+                return starting_node
+                break
+            else:
+                starting_node = starting_node.get_link()
+    return None    
+   
+def get_node_from_position(starting_node, position):
+    ''' Returns the node at the integer position
+    '''         
+    
+    if starting_node is None:
+        return None
+    else:
+        node_at_position = starting_node
+        for reps in range(position):
+            if node_at_position.get_link() is None:
+                return None
+            else:
+                node_at_position = node_at_position.get_link()
+            
+    return node_at_position
+            
 
 if __name__ == '__main__':
     
@@ -88,5 +118,13 @@ if __name__ == '__main__':
     print(new_node.get_link().get_data())
     print(new_node.get_link().get_link().get_data())
     print(list_length(new_node))
+    print(list_length(new_node))
     
+    seventh = list_search(new_node, "13")
+    
+    print(seventh.get_data())
+    
+    
+    eighth = get_node_from_position(new_node, 11)
+    print(eighth.get_data())
     pass
