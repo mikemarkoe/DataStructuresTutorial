@@ -88,7 +88,20 @@ def get_node_from_position(starting_node, position):
                 node_at_position = node_at_position.get_link()
             
     return node_at_position
-            
+
+def copy_list(input_list):
+    ''' Makes a copy of the list, returns the head node
+    '''
+    if input_list is None:
+        return None
+    else:
+        copied_list_head_node = StringLinkedNode(None, input_list.get_data())
+        copied_list = copied_list_head_node
+        while input_list.get_link() is not None:
+            input_list = input_list.get_link()
+            copied_list.add_node_after(input_list.get_data())
+            copied_list = copied_list.get_link()
+    return copied_list_head_node    
 
 if __name__ == '__main__':
     
@@ -127,4 +140,10 @@ if __name__ == '__main__':
     
     eighth = get_node_from_position(new_node, 11)
     print(eighth.get_data())
+    
+    
+    copy_of_new_node = copy_list(new_node)
+    print(copy_of_new_node.get_data())
+    print(copy_of_new_node.get_link().get_data())
+    print(copy_of_new_node.get_link().get_link().get_data())
     pass
