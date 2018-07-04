@@ -5,6 +5,7 @@ Created on Jul 3, 2018
 '''
 from linkedlist import StringLinkedNode
 from linkedlist import list_search
+from linkedlist import list_length
 
 
 class BagOfStrings:
@@ -36,7 +37,7 @@ class BagOfStrings:
             the_count = 0
             bag_list = self.head_node
             while bag_list is not None:
-                if bag_list.getData() == bag_data_string:
+                if bag_list.get_data() == bag_data_string:
                     break
                 else:
                     the_count = the_count + 1
@@ -44,7 +45,28 @@ class BagOfStrings:
         element_before = list_search(self.head_node, the_count -1)
         self.head_node.remove_node_after(element_before)
         return True
-                    
+    
+    def add(self, bag_data_string=""):
+        ''' Add the string to the bag at the head
+        '''
+        self.head_node = StringLinkedNode(self.head_node, bag_data_string)
+              
+    def print_data(self):
+        print_head = self.head_node
+        for data in range(list_length(print_head)+1):
+            print(print_head.get_data())
+            print_head = print_head.get_link()
     
 if __name__ == '__main__':
+    
+    new_bag = BagOfStrings()
+    new_bag.add("first")
+    new_bag.add("second")
+    new_bag.add("third")
+    new_bag.add("fourth")
+    new_bag.print_data()
+    new_bag.remove("third")
+    #there is a bug here
+    new_bag.print_data()
+    
     pass
