@@ -41,9 +41,10 @@ class BagOfStrings:
                     break
                 else:
                     the_count = the_count + 1
+                    bag_list = bag_list.get_link()
             return False #none of the list elements matched the String
         element_before = list_search(self.head_node, the_count -1)
-        self.head_node.remove_node_after(element_before)
+        element_before.remove_node_after()
         return True
     
     def add(self, bag_data_string=""):
@@ -65,8 +66,7 @@ if __name__ == '__main__':
     new_bag.add("third")
     new_bag.add("fourth")
     new_bag.print_data()
-    new_bag.remove("third")
-    #there is a bug here
+    print(new_bag.remove("third"))#there is a bug here    
     new_bag.print_data()
     
     pass
