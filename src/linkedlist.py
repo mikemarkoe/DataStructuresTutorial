@@ -34,8 +34,7 @@ class StringLinkedNode:
         ''' Add a node after this node.
             
         '''
-        current_next_node = self.get_link()
-        self.link = StringLinkedNode(current_next_node, node_data)
+        self.link = StringLinkedNode(self.get_link(), node_data)
         
     def remove_node_after(self):
         ''' Remove a node after this node.
@@ -103,7 +102,25 @@ def copy_list(input_list):
             copied_list = copied_list.get_link()
     return copied_list_head_node    
 
+def copy_list_with_tail(input_list):
+    ''' returns an array with a copy of the head of the list in element 0 
+        and the tail of the list in element 1
+    '''
+    if input_list is None:
+        return None
+    else:
+        copied_list_head_node = StringLinkedNode(None, input_list.get_data())
+        copied_list = copied_list_head_node
+        while input_list.get_link() is not None:
+            input_list = input_list.get_link()
+            copied_list.add_node_after(input_list.get_data())
+            copied_list = copied_list.get_link()
+    
+    return [copied_list_head_node, copied_list]        
+
 if __name__ == '__main__':
+    
+    """
     
     next2 = StringLinkedNode(None, "Next Next one")        
     next1  = StringLinkedNode(next2, "Next one")
@@ -122,28 +139,30 @@ if __name__ == '__main__':
     only_one_node = StringLinkedNode(next1, "I'm just one node")
     only_one_node.remove_node_after()
     print(only_one_node.get_data())
-    prev_node = StringLinkedNode(None)
-    for i in range(20):
-        new_node = StringLinkedNode(prev_node, str(i))
+    prev_node = None
+    for i in range(4):
+        new_node = StringLinkedNode(prev_node, str(i+1))
         prev_node = new_node
 
     print(new_node.get_data())
     print(new_node.get_link().get_data())
     print(new_node.get_link().get_link().get_data())
     print(list_length(new_node))
-    print(list_length(new_node))
     
-    seventh = list_search(new_node, "13")
+    seventh = list_search(new_node, "2")
     
     print(seventh.get_data())
     
     
-    eighth = get_node_from_position(new_node, 11)
+    eighth = get_node_from_position(new_node, 2)
     print(eighth.get_data())
     
     
-    copy_of_new_node = copy_list(new_node)
-    print(copy_of_new_node.get_data())
-    print(copy_of_new_node.get_link().get_data())
-    print(copy_of_new_node.get_link().get_link().get_data())
+    copy_of_new_node = copy_list_with_tail(new_node)
+    print(copy_of_new_node[0].get_data())
+    print(copy_of_new_node[0].get_link().get_data())
+    print(copy_of_new_node[0].get_link().get_link().get_data())
+    print(copy_of_new_node[1].get_data())   
+    print(list_length(copy_of_new_node[0]))
+    """
     pass
