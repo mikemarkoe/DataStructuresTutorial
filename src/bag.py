@@ -33,6 +33,18 @@ class BagOfStrings:
         '''
         if self.head_node is None:
             return False
+        node_to_remove = list_search(self.head_node, bag_data_string)
+        
+        if node_to_remove is None:
+            return False
+        
+        node_to_remove.set_data(self.head_node.get_data())
+        self.head_node = self.head_node.get_link()
+        self.number_items = self.number_items - 1
+        return True
+        
+        
+        '''
         else:
             the_count = 0
             bag_list = self.head_node
@@ -46,11 +58,15 @@ class BagOfStrings:
         element_before = list_search(self.head_node, the_count -1)
         element_before.remove_node_after()
         return True
+    '''
+    
+    
     
     def add(self, bag_data_string=""):
         ''' Add the string to the bag at the head
         '''
         self.head_node = StringLinkedNode(self.head_node, bag_data_string)
+        self.number_items = self.number_items + 1
               
     def print_data(self):
         print_head = self.head_node
